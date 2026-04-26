@@ -1,0 +1,21 @@
+# Pinned for macOS Apple Silicon. See pyproject.toml for the source of truth.
+
+# whisper.cpp Python binding. 1.3.3 is the last release that imports on
+# Python 3.11–3.13 without PEP 604 errors and matches our model dir layout.
+pywhispercpp==1.3.3
+
+# Mic capture.
+sounddevice>=0.4.6
+numpy>=1.26
+
+# LLM brain.
+google-genai>=0.3.0
+pydantic>=2.5
+
+# macOS UI bridge for the floating chat.
+pyobjc-core>=10.0
+pyobjc-framework-Cocoa>=10.0
+pyobjc-framework-Quartz>=10.0
+
+# .env loader.
+python-dotenv>=1.0

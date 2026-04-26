@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+
+# State
+~/.vibera/
+.vibera/
+
+# Logs
+*.log
+logs/
+
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+.cursor/
+
+# Secrets
+.env
+.env.local
+
+# Whisper model cache (lives in ~/Library/Application Support/pywhispercpp/)
+
+# Local OpenRA checkout (users build their own)
+OpenRA/
+openra/

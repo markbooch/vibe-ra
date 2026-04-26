@@ -1,0 +1,11 @@
+--- a/mods/ra/rules/world.yaml
++++ b/mods/ra/rules/world.yaml
+@@ -168,7 +168,7 @@
+ 	ExternalControl:
+ 		Enabled: true
+ 		Host: 127.0.0.1
+-		Port: 7777
++		Port: 7778
+ 		MaxClients: 4
+ 
+ 	# Disable the AI by default; it is enabled per-map / per-mode.

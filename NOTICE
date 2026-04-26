@@ -1,0 +1,37 @@
+vibera
+======
+
+Voice-controlled AI staff officer for OpenRA Red Alert 1.
+
+Copyright (c) 2026 Mark Boo
+Licensed under the MIT License (see LICENSE).
+
+This project is an *external* control client for OpenRA. It does not bundle
+or redistribute OpenRA source or assets. To run vibera you must install
+OpenRA separately and apply the patch in `patches/openra-port.patch`, which
+exposes the ExternalControl trait on a non-default port (7778).
+
+Third-party software
+--------------------
+
+OpenRA (https://github.com/OpenRA/OpenRA)
+    Licensed under GPLv3. vibera communicates with OpenRA over a TCP
+    socket; this is "mere aggregation" and does not affect vibera's MIT
+    license. The patch in `patches/` is a derivative work of OpenRA and is
+    therefore distributed under GPLv3 (see header in the patch file).
+
+pywhispercpp (https://github.com/abdeladim-s/pywhispercpp)
+    MIT-licensed Python bindings for whisper.cpp.
+
+whisper.cpp (https://github.com/ggerganov/whisper.cpp)
+    MIT-licensed C/C++ port of OpenAI Whisper.
+
+google-genai (https://github.com/googleapis/python-genai)
+    Apache-2.0.
+
+PyObjC (https://github.com/ronaldoussoren/pyobjc)
+    MIT-licensed.
+
+Red Alert 1 game assets are © Westwood Studios / Electronic Arts. They are
+NOT included in this repository. Players must own a legal copy of Red Alert
+or use the freeware release distributed by EA.

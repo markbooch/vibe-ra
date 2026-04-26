@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vibera"
+version = "0.1.0"
+description = "Voice-controlled AI staff officer for OpenRA Red Alert 1"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Mark Boo" }]
+keywords = ["openra", "red-alert", "voice", "whisper", "gemini", "rts"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: MacOS X",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS :: MacOS X",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Games/Entertainment :: Real Time Strategy",
+]
+dependencies = [
+    # Pinned: 1.4.x uses PEP 604 union syntax that breaks import on
+    # older runtimes and bumps a number of behavioural defaults we rely on.
+    "pywhispercpp==1.3.3",
+    "sounddevice>=0.4.6",
+    "numpy>=1.26",
+    "google-genai>=0.3.0",
+    "pydantic>=2.5",
+    # macOS UI bridge.
+    "pyobjc-core>=10.0",
+    "pyobjc-framework-Cocoa>=10.0",
+    "pyobjc-framework-Quartz>=10.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+vibera = "vibera.__main__:main"
+
+[project.urls]
+Source = "https://github.com/markbooch/vibe-ra"
+
+[tool.setuptools.packages.find]
+include = ["vibera*"]
