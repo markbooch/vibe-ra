@@ -632,7 +632,7 @@ class ChatController(NSObject):
             gx, gy, gw, gh = game
             loc = f"OpenRA window @ ({gx},{gy}) {gw}x{gh}"
         else:
-            loc = "OpenRA window not found — placed top-right of main screen"
+            loc = "Tip: launch OpenRA and I'll dock alongside it."
         self.__appendBot(
             "Hi commander. Type a command and I'll dispatch it; the daemon\n"
             "follows up on multi-step tasks.\n"
