@@ -886,44 +886,28 @@ class ChatController(NSObject):
             text = self._voice_input.stop_and_transcribe()
         except Exception as e:
             err = f"{type(e).__name__}: {e}"
-        # Bounce result back to main thread so we can mutate UI + submit.
-        payload = (text, err)
+        # Stash on self because performSelectorOnMainThread bridges Python
+        # objects through Cocoa, which mangles tuples/None into NSArray/
+        # NSNull. Plain attribute access keeps types intact.
+        self._voice_pending = (text or "", err)
         self.performSelectorOnMainThread_withObject_waitUntilDone_(
-            "_handleVoiceResult:", payload, False)
+            "_handleVoiceResult:", None, False)
 
-    def _handleVoiceResult_(self, payload):
-        import logging as _l
-        _vlog = _l.getLogger("vibera.floating_chat")
-        _vlog.info("voice: _handleVoiceResult_ entered, payload type=%s", type(payload).__name__)
-        try:
-            text, err = payload
-        except Exception as _e:
-            _vlog.exception("voice: payload unpack failed (payload=%r)", payload)
-            self.mic_btn.setEnabled_(True)
-            self.mic_btn.setTitle_("🎙")
-            self.__setStatus_color("idle", MUTED)
-            return
-        _vlog.info("voice: result text=%r err=%r", text, err)
+    def _handleVoiceResult_(self, _ignored):
+        text, err = getattr(self, "_voice_pending", ("", None))
+        self._voice_pending = None
         self.mic_btn.setEnabled_(True)
         self.mic_btn.setTitle_("🎙")
         self.__setStatus_color("idle", MUTED)
         if err:
-            _vlog.warning("voice: transcribe error: %s", err)
             self.__appendBot(f"🎙 transcribe failed: {err}", is_error=True)
             return
         if not text:
-            _vlog.warning("voice: empty text from transcribe")
             self.__appendBot("🎙 nothing recognised (too short / too quiet / silent?)", is_error=True)
             return
-        # Surface the transcribed text in the input box so the user can
-        # eyeball it before it goes — but auto-submit anyway since the
-        # whole point is hands-off. They can edit + re-send if wrong.
-        _vlog.info("voice: calling __submitFromUI with %r", text)
-        try:
-            self.__submitFromUI(text)
-            _vlog.info("voice: __submitFromUI returned")
-        except Exception:
-            _vlog.exception("voice: __submitFromUI raised")
+        # Auto-submit — the whole point is hands-off. User can edit + re-send
+        # if the transcription was wrong.
+        self.__submitFromUI(text)
 
     def _quickAction_(self, sender):
         idx = sender.tag()
