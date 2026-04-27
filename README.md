@@ -27,8 +27,7 @@ The pattern generalises to any RTS that exposes its game state.
 
 ## What it looks like
 
-> *(Screenshot placeholder — see `docs/` for a longer write-up of the
-> design.)*
+![vibera floating chat window](docs/img/floating-chat.png)
 
 You say: *"Build five rifle infantry and send them to scout the
 northwest ridge."* The window transcribes, Gemini emits a JSON action

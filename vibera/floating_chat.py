@@ -394,7 +394,7 @@ class ChatController(NSObject):
         win = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(
             NSMakeRect(x, y, w, h), style, NSBackingStoreBuffered, False
         )
-        win.setTitle_("OpenRA Commander")
+        win.setTitle_("Vibera")
         win.setLevel_(NSFloatingWindowLevel)
         win.setReleasedWhenClosed_(False)
         win.setMinSize_(NSMakeSize(360, 520))
@@ -556,7 +556,7 @@ class ChatController(NSObject):
         # previously hung the worker. Best-effort, ignored on failure.
         def _prewarm():
             try:
-                from voice_input import _ensure_model
+                from .voice_input import _ensure_model
                 _ensure_model()
             except Exception:
                 import logging as _l
@@ -854,7 +854,7 @@ class ChatController(NSObject):
         # use so unrelated runs don't pay the import / model-load cost.
         if self._voice_input is None:
             try:
-                from voice_input import VoiceInput
+                from .voice_input import VoiceInput
                 self._voice_input = VoiceInput()
             except Exception as e:
                 self.__appendBot(f"🎙 voice_input load failed: {e}", is_error=True)
