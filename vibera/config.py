@@ -7,6 +7,33 @@ editing source. Read once at import time; modules import the constants.
 from __future__ import annotations
 
 import os
+from pathlib import Path
+
+
+def _load_dotenv() -> None:
+    """Best-effort .env loader. Walks up from CWD to find the first
+    .env file. Does not overwrite already-set env vars (so explicit
+    shell exports always win). Silently no-ops if no file is found."""
+    cwd = Path.cwd().resolve()
+    for d in (cwd, *cwd.parents):
+        path = d / ".env"
+        if path.is_file():
+            try:
+                for raw in path.read_text().splitlines():
+                    line = raw.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, _, v = line.partition("=")
+                    k = k.strip()
+                    v = v.strip().strip('"').strip("'")
+                    if k and k not in os.environ:
+                        os.environ[k] = v
+            except OSError:
+                pass
+            return
+
+
+_load_dotenv()
 
 
 def _bool(name: str, default: bool) -> bool:

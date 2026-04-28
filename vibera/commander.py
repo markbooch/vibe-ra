@@ -201,7 +201,7 @@ class Commander:
         # Lazy imports — adviser path already proves these resolve.
         from google import genai
         from google.genai import types
-        from voice_commander import snapshot_to_lean_state
+        from .voice_commander import snapshot_to_lean_state
 
         api_key = (os.environ.get("GEMINI_API_KEY")
                    or os.environ.get("GOOGLE_API_KEY"))
@@ -214,7 +214,7 @@ class Commander:
         # LLM repeatedly suggested wrong-faction items / un-prereq'd tech
         # because these were buried inside per-queue blobs at the bottom.
         try:
-            from army_reactors import _detect_faction, _buildable_set
+            from .army_reactors import _detect_faction, _buildable_set
             state["faction"] = _detect_faction(snap)
             state["buildable"] = sorted(_buildable_set(snap))
             state["buildings"] = sorted({

@@ -35,8 +35,8 @@ vibera/                Python package (entry: __main__.py)
   reactors.py          Deterministic auto-responses (zero-token)
   snapshot_pump.py     Polls OpenRA, diffs state, emits events
   openra_client.py     TCP client for the ExternalControl trait
+  prompts/             System prompts for the LLMs (English)
   ...
-prompts/               System prompts for the LLMs (English)
 patches/               OpenRA patches we depend on
 docs/                  manifesto, screenshots
 ```
@@ -44,8 +44,8 @@ docs/                  manifesto, screenshots
 ## What kinds of PR are welcome
 
 - **Bug fixes** with a reproducer in the issue or PR description.
-- **Prompt improvements** — particularly to `prompts/adviser_prompt.md`
-  and `prompts/system_prompt.md`. Changes here produce visible
+- **Prompt improvements** — particularly to `vibera/prompts/adviser_prompt.md`
+  and `vibera/prompts/system_prompt.md`. Changes here produce visible
   behaviour changes; please describe what game situations got better.
 - **Linux or Windows port.** The Cocoa-bound bits live in
   `floating_chat.py` and `voice_input.py`. Everything else is portable.

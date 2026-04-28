@@ -206,7 +206,7 @@ class Recovery:
             return
         if not isinstance(ev, TickEvent) or ev.snapshot is None:
             # Connected event resets disconnected timer
-            from events import ConnectedEvent
+            from .events import ConnectedEvent
             if isinstance(ev, ConnectedEvent):
                 self._disconnected_since = None
             return

@@ -148,7 +148,7 @@ changes.
 
 The pattern generalises beyond OpenRA. Any RTS that exposes its game
 state and accepts external commands could host this kind of agent. The
-prompts in `prompts/` are the only RA1-specific code in the project;
+prompts in `vibera/prompts/` are the only RA1-specific code in the project;
 the snapshot pump, the event bus, the reactor layer, the validator,
 and the daemon are all engine-agnostic. Modders for SC2, AoE2,
 Warcraft 3, Beyond All Reason — there is nothing in vibera that you

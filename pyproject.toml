@@ -51,3 +51,6 @@ Source = "https://github.com/markbooch/vibe-ra"
 
 [tool.setuptools.packages.find]
 include = ["vibera*"]
+
+[tool.setuptools.package-data]
+vibera = ["prompts/*.md"]

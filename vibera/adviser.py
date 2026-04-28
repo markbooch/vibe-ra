@@ -293,8 +293,8 @@ class AdviserLoop:
         # the subscriber thread.
         try:
             import json as _json
-            from task_translator import propose_advice
-            from voice_commander import snapshot_to_lean_state
+            from .task_translator import propose_advice
+            from .voice_commander import snapshot_to_lean_state
         except Exception as e:
             return {"_error": f"adviser import failed: {e}",
                     "commentary": "", "suggestions": []}
