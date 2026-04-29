@@ -27,13 +27,16 @@ The pattern generalises to any RTS that exposes its game state.
 
 ## What it looks like
 
-![vibera floating chat window](docs/img/floating-chat.png)
+![vibera commanding an OpenRA Red Alert game](docs/img/in-game.png)
 
-You say: *"Build five rifle infantry and send them to scout the
-northwest ridge."* The window transcribes, Gemini emits a JSON action
-plan, OpenRA queues the units and walks them out. Power runs low? The
-adviser pings you mid-game with a one-click suggestion to build another
-power plant.
+You type or say: *"build another power plant."* The plan box shows
+what the LLM proposed (`produce powr`, confidence 0.95, 1.4s round
+trip), the daemon dispatches it, OpenRA queues the building. The
+adviser is running in the background — top of the window it's
+pointing out that the war factory just finished and economy is stable,
+suggesting infantry as the next move. Recent task history scrolls
+underneath; quick-action buttons at the top let you accept adviser
+suggestions with one click.
 
 ## Why this matters beyond a single game
 
